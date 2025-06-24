@@ -1,0 +1,61 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+/build
+/lib
+*.log
+
+# Coverage directories
+coverage/
+.nyc_output/
+
+# Production
+.env
+.env.*
+
+# VSCode
+.vscode/
+.idea/
+
+# Test output
+/jest/
+*.tsbuildinfo
+
+# Misc
+*.tgz
+*.zip
+*.tar
+*.gz
+
+# Mac system files
+*.DS_Store
+
+# Optional: ignore minified or transpiled files if building
+*.min.js
+*.map
+
+# NPM package files (if packaging)
+*.tgz
+
+# SASS, LESS
+.sass-cache/
+.cache/
+
+# Optional: editor backups
+*~
+*.swp
+*.swo
+*.bak
+
+# Local config
+*.local

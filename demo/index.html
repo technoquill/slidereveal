@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slidereveal demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root, [data-bs-theme=light], [data-bs-theme=dark] {
+            --bs-border-radius: 0;
+            --bs-border-radius-sm: 0;
+            --bs-border-radius-lg: 0;
+            --bs-border-radius-xl: 0;
+            --bs-border-radius-xxl: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .lead {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body data-bs-theme="light">
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <header id="heading" class="sticky-top text-bg-light px-4 pb-2">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="h2 py-3"><a href="/" class="">SlideReveal.js</a></h1>
+                    </div>
+                    <div class="col-auto">
+                        <div class="pt-3 mr-4">
+                            <a class="btn btn-primary" href="#" target="_blank">
+                                <i class="fas fa-solid fa-download"></i>
+                                <span class="d-none d-md-inline-block">&nbsp; Download v1.0.0</span></a>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <p class="p-3">
+                            <a href="javascript:void(0)"
+                               class="h3 toggle-panel"
+                               data-target="#panel"
+                               data-width="320px"
+                               data-position="right"
+                               data-filter="true"
+                               data-filter-style="blur(2px)"
+                               data-overlay="true"
+                               data-overlay-color="rgba(0,0,0,0.3)"
+                               data-close-on-outside-click="true"
+                               data-speed="500"
+                               data-push-body="false"
+                               data-selector="body"
+                               data-trigger=""
+                               data-auto-escape="true"
+                            >
+                                <i class="fa-solid fa-bars-staggered"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="lead">
+                    A lightweight, flexible, and dependency-free JavaScript class for creating responsive side panels
+                    (drawers/slide menus).
+                </div>
+
+            </header>
+
+            <div id="top-divider" class="my-2"></div>
+
+
+            <main>
+
+
+                <div class="alert alert-warning mb-3" role="alert" id="disclaimer">
+                    <strong>Disclaimer:</strong>
+                    <br>
+                    This library is not affiliated with the original
+                    <a href="https://github.com/nnattawat/slidereveal" target="_blank" rel="noopener">jQuery
+                        SlideReveal</a>
+                    (author: Natthawat Pongsri, MIT license).<br>
+                    <b>SlideReveal.js</b> is a modern, dependency-free, vanilla JS implementation with extended
+                    functionality for contemporary frontend projects.
+                </div>
+
+                <div class="alert alert-info" role="alert" id="special-thanks">
+                    <strong>Special thanks to the original author:</strong>
+                    <br>
+                    Huge thanks to
+                    <a href="https://github.com/nnattawat" target="_blank" rel="noopener">Natthawat Pongsri</a>
+                    for the idea and the original jQuery implementation.<br>
+                    The motivation for this rewrite was the move away from jQuery and the need for a universal,
+                    lightweight
+                    solution.
+                </div>
+
+
+                <div class="card mb-3" id="features">
+                    <div class="card-body">
+                        <h2 class="card-title h5 mb-3">Features</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <i class="bi bi-arrow-left-right text-primary me-2"></i>
+                                Left or right sliding panel <code>position: 'left' | 'right'</code>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-arrows-angle-expand text-success me-2"></i>
+                                Any width: px, %, vw, rem, em <code>width: 320 | '80vw' | '70%' | ...</code>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-layers-half text-warning me-2"></i>
+                                Overlay with configurable color and opacity
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-arrow-bar-right text-info me-2"></i>
+                                Push body effect (moves content) or overlays content
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-funnel-fill text-secondary me-2"></i>
+                                Content filter (e.g., blur, grayscale) when open
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-x-octagon text-danger me-2"></i>
+                                Close on the outside click (without an overlay)
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-universal-access-circle text-muted me-2"></i>
+                                ARIA accessibility support
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lightning-fill text-primary me-2"></i>
+                                Callbacks: <code>onInit</code>, <code>onOpen</code>, <code>onClose</code>,
+                                <code>onEscape</code>
+                            </li>
+                            <li>
+                                <i class="bi bi-slash-circle text-success me-2"></i>
+                                No external dependencies <span class="fw-bold">(no jQuery!)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="card mb-3" id="how-to-use">
+                    <div class="card-body">
+                        <h2 class="card-title h5 mb-3">How to use</h2>
+                        <p class="card-text">
+                            <strong class="h5 text-info">Include SlideReveal and HTML markup</strong>
+                        <pre class="language-html">
+<code>
+
+&lt;!-- selector div#wrapper --&gt;
+&lt;html&gt;
+    &lt;title&gt;SlideReveal #wrapper selector&lt;/title&gt;
+    &lt;body&gt;
+        &lt;div id='wrapper'&gt;
+            &lt;header&gt;
+                &lt;button class='toggle-panel'&gt;Trigger&lt;/button&gt;
+            &lt;/header&gt;
+            &lt;article&gt;Any content here!&lt;/article&gt;
+        &lt;/div&gt;
+        &lt;div id='panel'&gt;
+            &lt;h2>Menu&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li>Item 1&lt;/li&gt;
+                &lt;li&gt;Item 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;script src="/js/slidereveal.min.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+            const menu = new SlideReveal('#panel', {
+                selector: '#wrapper'
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!-- selector body --&gt;
+&lt;html&gt;
+&lt;title&gt;SlideReveal body selector&lt;/title&gt;
+    &lt;body&gt;
+        &lt;header&gt;
+            &lt;button class='toggle-panel'&gt;Trigger&lt;/button&gt;
+        &lt;/header&gt;
+        &lt;article&gt;Body content here!&lt;/article&gt;
+        &lt;div id='panel'&gt;
+            &lt;h2>Menu&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li>Item 1&lt;/li&gt;
+                &lt;li&gt;Item 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;script src="/js/slidereveal.min.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+            const menu = new SlideReveal('#panel', {
+                selector: 'body'
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+
+                        <div class="alert alert-warning" role="alert">
+                            <h5 class="alert-heading">Warning about <code>selector</code> usage</h5>
+                            <ul class="mb-2">
+                                <li>
+                                    If you use a wrapper element selector (e.g., <code>#wrapper</code>), the sliding
+                                    panel will only move or apply effects (such as push, filter, etc.) to the content
+                                    inside that container.
+                                </li>
+                                <li>
+                                    If you use the <code>'body'</code> selector, SlideReveal wraps the entire <code>&lt;body&gt;</code>
+                                    content (except the panel itself and overlay) inside a special container to allow
+                                    for push and filter effects on the whole page.
+                                </li>
+                            </ul>
+                            <div class="mb-2">
+                                <strong>⚠️ Mixing different layouts and selectors may affect the behavior and appearance
+                                    of the panel!</strong>
+                                <ul>
+                                    <li>
+                                        If the panel is a direct child of <code>&lt;body&gt;</code> and you use <code>selector:
+                                        'body'</code>, the library will create a wrapper for all page content.
+                                    </li>
+                                    <li>
+                                        If your main content is already wrapped in a container (like <code>&lt;div
+                                        id="wrapper"&gt;</code>), it's better to use that container as your <code>selector</code>
+                                        value.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>Best practice:</strong>
+                                <br>
+                                Match your <code>selector</code> option to the actual layout structure of your page to
+                                avoid unexpected visual effects or content shifts.
+                            </div>
+                            <hr>
+                            <small>
+                                If you have any doubts, check the developer tools to see how SlideReveal is wrapping and
+                                manipulating content.
+                            </small>
+                        </div>
+
+
+                        <br>
+                        <strong class="h5 text-info">Javascript</strong>
+                        <pre class="language-javascript">
+<code>
+// SlideReveal initialization and all options list
+const menu = new SlideReveal('#panel', {
+    width: 320,
+    position: 'right',
+    filter: true,
+    filterStyle: 'blur(2px)',
+    overlay: true,
+    overlayColor: 'rgba(0,0,0,0.3)',
+    closeOnOutsideClick: true,
+    speed: 400,
+    pushBody: true,
+    selector: '#wrapper', // 'body' default
+    trigger: '.toggle-panel',
+    autoEscape: true,
+    zIndex: 1050,
+    classNames: {},
+    onInit: () => null,
+    onOpen: () => null,
+    onClose: () => null,
+    onEscape: () => null,
+    ariaLabel: 'Sidebar Menu',
+});
+
+// Events
+menu.onInit = () => { console.log('Init!') };
+menu.onOpen = () => { console.log('Opened!') };
+menu.onClose = () => { console.log('Closed!'); };
+menu.onEscape = () => { console.log('Escape pressed!') };
+
+// Methods
+menu.open();
+menu.close();
+menu.toggle();
+menu.destroy();
+</code>
+                                </pre>
+
+                    </div>
+                </div>
+
+
+                <div class="card mb-3" id="options">
+                    <div class="card-body">
+                        <h2 class="card-title h5 mb-3">Options</h2>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered align-middle">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>Option</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Default</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><code>width</code></td>
+                                    <td>Number/String</td>
+                                    <td>Panel width (<code>px</code>, <code>%</code>, <code>vw</code>, <code>rem</code>,
+                                        etc.)
+                                    </td>
+                                    <td><code>300</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>position</code></td>
+                                    <td>String</td>
+                                    <td><code>'left'</code> or <code>'right'</code></td>
+                                    <td><code>'right'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>pushBody</code></td>
+                                    <td>Boolean</td>
+                                    <td>Pushes body content instead of overlaying</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>overlay</code></td>
+                                    <td>Boolean</td>
+                                    <td>Shows overlay under the panel</td>
+                                    <td><code>true</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>overlayColor</code></td>
+                                    <td>String</td>
+                                    <td>Overlay color (CSS value)</td>
+                                    <td><code>'rgba(0,0,0,0.3)'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>filter</code></td>
+                                    <td>Boolean</td>
+                                    <td>Applies CSS filter to page content (blur, etc)</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>filterStyle</code></td>
+                                    <td>String</td>
+                                    <td>CSS filter value (e.g., <code>'blur(2px)'</code>)</td>
+                                    <td><code>'blur(2px)'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>closeOnOutsideClick</code></td>
+                                    <td>Boolean</td>
+                                    <td>Closes panel when clicking outside (only if no overlay)</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>selector</code></td>
+                                    <td>String</td>
+                                    <td>Selector for affected content (normally <code>'body'</code>)</td>
+                                    <td><code>'body'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>trigger</code></td>
+                                    <td>String/HTMLElement</td>
+                                    <td>Selector or element for open/close trigger</td>
+                                    <td><code>null</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>speed</code></td>
+                                    <td>Number</td>
+                                    <td>Animation duration in ms</td>
+                                    <td><code>400</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>autoEscape</code></td>
+                                    <td>Boolean</td>
+                                    <td>Closes panel with Escape key</td>
+                                    <td><code>true</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>zIndex</code></td>
+                                    <td>Number</td>
+                                    <td>zIndex for panel (default) and body (default - 1)</td>
+                                    <td><code>1050</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ariaLabel</code></td>
+                                    <td>String</td>
+                                    <td>ARIA label for accessibility</td>
+                                    <td><code>'Menu'</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>onInit</code></td>
+                                    <td>Function</td>
+                                    <td>Callback after panel initialization</td>
+                                    <td><code>null</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>onOpen</code></td>
+                                    <td>Function</td>
+                                    <td>Callback after panel opens</td>
+                                    <td><code>null</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>onClose</code></td>
+                                    <td>Function</td>
+                                    <td>Callback after panel closes</td>
+                                    <td><code>null</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>onEscape</code></td>
+                                    <td>Function</td>
+                                    <td>Callback after closing by Escape</td>
+                                    <td><code>null</code></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+<section id="examples">
+
+
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h2 class="card-title h5 mb-3">Right Panel</h2>
+                        <p class="card-text"></p>
+                        <pre class="language-javascript">
+<code>
+const menu = new SlideReveal('#panel', {
+    position: 'right',
+    filter: true,
+    pushBody: true,
+    filterStyle: 'blur(2px) grayscale(100%)'
+});
+</code>
+                    </pre>
+                        <button class="btn btn-primary toggle-panel"
+                                data-target="#panel"
+                                data-position="right"
+                                data-filter="true"
+                                data-filter-style="blur(2px) grayscale(100%)"
+                                data-push-body="true"
+                        >
+                            Toggle panel
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h2 class="card-title h5 mb-3">Left Panel</h2>
+                        <p class="card-text"></p>
+                        <pre class="language-javascript">
+<code>
+const menu = new SlideReveal('#panel', {
+    position: 'left'
+});
+</code>
+                    </pre>
+                        <button class="btn btn-primary toggle-panel"
+                                data-target="#panel"
+                                data-position="left"
+                                data-push-body="true"
+                        >
+                            Toggle panel
+                        </button>
+                    </div>
+                </div>
+
+</section>
+
+        </div>
+    </div>
+</div>
+
+</main>
+
+
+<footer class="sticky-bottom bg-light text-center py-2">
+    <a href="https://github.com/technoquill/slidereveal" target="_blank" class="btn btn-default">
+        <i class="fa-brands fa-github"></i>
+        https://github.com/technoquill/slidereveal<a>
+        <div class="small">
+            Copyright (&copy;) 2025 Mykhailo Kulyk
+        </div>
+</footer>
+
+
+<div id="panel">
+    <div class="list-group">
+        <a href="#disclaimer" class="list-group-item list-group-item-action">Disclaimer</a>
+        <a href="#special-thanks" class="list-group-item list-group-item-action">Special thanks</a>
+        <a href="#features" class="list-group-item list-group-item-action">Features</a>
+        <a href="#how-to-use" class="list-group-item list-group-item-action">How to use</a>
+        <a href="#options" class="list-group-item list-group-item-action">Options</a>
+        <a href="#examples" class="list-group-item list-group-item-action">Examples with options</a>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+<script src="/js/slidereveal.js"></script>
+<script>
+
+    hljs.highlightAll();
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const panels = {};
+
+        document.querySelectorAll('.toggle-panel').forEach(button => {
+            const target = button.dataset.target;
+            const targetId = target.startsWith('#') ? target : `#${target}`;
+            const targetKey = target.replace(/^#/, '');
+
+            if (!panels[targetKey]) {
+                panels[targetKey] = new SlideReveal(targetId, {});
+            }
+
+            button.addEventListener('click', () => {
+                if (panels[targetKey]) {
+                    panels[targetKey].destroy();
+                    delete panels[targetKey];
+                    resetPanelStyles(targetId);
+                }
+
+                let options = {};
+                Object.entries(button.dataset).forEach(([key, value]) => {
+                    if (key !== "target") {
+                        if (["true", "false"].includes(value)) value = value === "true";
+                        options[key] = value;
+                    }
+                });
+
+                panels[targetKey] = new SlideReveal(targetId, options);
+                panels[targetKey].toggle();
+
+                panels[targetKey].onClose = () => {
+                    panels[targetKey].destroy();
+                    resetPanelStyles(targetId);
+                    delete panels[targetKey];
+                }
+            });
+        });
+
+        // Panel links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                const target = document.querySelector(targetId);
+                const header = document.getElementById('heading');
+                const headerHeight = header ? header.offsetHeight : 0;
+                if (target) {
+                    e.preventDefault();
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    const container = this.closest('div[id]');
+                    setTimeout(() => {
+                        panels[container.id].toggle()
+                    }, panels[container.id].options.speed)
+                }
+            });
+
+
+        });
+
+        if (window.location.hash) {
+            const targetId = window.location.hash;
+            scrollToBlock(targetId);
+        }
+
+    });
+
+    function scrollToBlock(targetId) {
+        if (!targetId || targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+            target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            //history.pushState(null, null, targetId);
+        }
+    }
+
+    function resetPanelStyles(targetId) {
+        const el = document.querySelector(targetId);
+        if (el) {
+            el.style.transform = '';
+            el.style.transition = '';
+            el.style.right = '';
+            el.style.left = '';
+            el.style.width = '';
+            el.style.height = '';
+            el.style.zIndex = '';
+            el.style.background = '';
+            el.removeAttribute('aria-hidden');
+            el.removeAttribute('aria-label');
+            el.removeAttribute('aria-modal');
+            el.removeAttribute('role');
+            el.classList.remove('slidereveal-panel');
+        }
+    }
+
+</script>
+<script>
+
+</script>
+</body>
+</html>
