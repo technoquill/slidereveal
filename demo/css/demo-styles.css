@@ -1,0 +1,20 @@
+:root, [data-bs-theme=light], [data-bs-theme=dark] {
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-xl: 0;
+  --bs-border-radius-xxl: 0;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .lead {
+    font-size: 1rem;
+  }
+}

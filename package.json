@@ -1,0 +1,24 @@
+{
+  "name": "slidereveal-js",
+  "version": "1.0.0",
+  "main": "dist/slidereveal.min.js",
+  "module": "src/slidereveal.js",
+  "exports": {
+    ".": "./src/slidereveal.js"
+  },
+  "keywords": [
+    "slide",
+    "drawer",
+    "menu",
+    "panel",
+    "sidebar",
+    "vanilla",
+    "javascript",
+    "slidereveal",
+    "js",
+    "ui"
+  ],
+  "license": "MIT",
+  "author": "Mykhailo Kulyk",
+  "repository": "https://github.com/technoquill/slidereveal"
+}
