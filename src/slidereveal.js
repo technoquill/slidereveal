@@ -37,11 +37,13 @@ class SlideReveal {
      * @param {string} [options.selector='body'] - The selector specifying the content that is affected by the sliding panel.
      * @param {string|null} [options.trigger=null] - The selector for the element that triggers the panel to open or close.
      * @param {boolean} [options.autoEscape=true] - Whether the Escape key closes the panel when it is open.
+     * @param {number} [options.zIndex=1050] - zIndex panel (1050) and body (default value - 1)
      * @param {Object} [options.classNames={}] - (optional)
      *    Allows you to override the default CSS class names for all SlideReveal elements:
      *    - `bodyWrapper`: Wrapper around the main page content (default: 'slidereveal-body')
      *    - `bodyOpen`: Class added to <body> when the panel is open (default: 'slidereveal-open')
-     *    - `content`: Main sliding panel container class (default: 'slidereveal-panel')
+     *    - `panel`: Main sliding panel container class (default: 'slidereveal-panel')
+     *    - `panelContent`: Main sliding panel content class (default: 'slidereveal-panel-content')
      *    - `overlay`: Overlay element class (default: 'slidereveal-overlay')
      *    Use these to better match your own CSS or to avoid style conflicts.
      * @param {Function|null} [options.onInit=null] - A callback function executed when the panel is initialized.
@@ -65,6 +67,7 @@ class SlideReveal {
             selector: 'body',
             trigger: null,
             autoEscape: true,
+            zIndex: 1050,
             classNames: {},
             onInit: null,
             onOpen: null,
@@ -110,7 +113,7 @@ class SlideReveal {
             [this.options.position]: `-${this._panelWidthValue}`,
             width: `${this._panelWidthValue}`,
             height: '100vh',
-            zIndex: 1000,
+            zIndex: this.options.zIndex,
             background: 'white',
         });
 
@@ -119,9 +122,10 @@ class SlideReveal {
             position: 'relative',
             top: '0',
             left: '0',
-            width: `${this._panelWidthValue}`,
+            //width: `${this._panelWidthValue}`,
+            width: '100%',
             overflowY: 'auto',
-            overflowX: 'hidden',
+            //overflowX: 'hidden',
             padding: '0',
             boxSizing: 'border-box',
             wordBreak: 'break-word',
@@ -144,7 +148,7 @@ class SlideReveal {
                 width: '100vw',
                 height: '100vh',
                 background: this.options.overlayColor,
-                zIndex: 999,
+                zIndex: this.options.zIndex - 1,
                 opacity: 0,
                 pointerEvents: 'none',
                 transition: 'opacity 0.3s'
@@ -267,6 +271,7 @@ class SlideReveal {
         this.panel.setAttribute('aria-hidden', 'true');
 
         if (this.options.overlay) {
+            this.overlay.style.transition = `opacity ${this.options.speed}ms`;
             this.overlay.style.opacity = '0';
             this.overlay.style.pointerEvents = 'none';
         }
@@ -312,19 +317,38 @@ class SlideReveal {
      * @return {void} There is no return value.
      */
     destroy() {
+        // Overlay
         if (this.options.overlay && this.overlay) {
             this.overlay.remove();
+            this.overlay = null;
         }
+        // pushBody styles
         if (this.options.pushBody) {
             this.bodyContent.style.transform = '';
             this.bodyContent.style.transition = '';
             this.bodyContent.style.overflowX = '';
         }
+        // filter
+        if (this.options.filter) {
+            this.bodyContent.style.filter = '';
+        }
+        // panel
+        if (this.panel) {
+            this.panel.setAttribute('aria-hidden', 'true');
+            this.panel.style.transform = '';
+        }
+        // body open class
+        document.body.classList.remove(this._classNames.bodyOpen);
+
+        // ESC
         if (this.options.autoEscape && this._escHandler) {
             document.removeEventListener('keydown', this._escHandler);
+            this._escHandler = null;
         }
+        // Click
         if (this._bodyClickHandler) {
             this.bodyContent.removeEventListener('click', this._bodyClickHandler);
+            this._bodyClickHandler = null;
         }
     }
 
@@ -393,7 +417,6 @@ class SlideReveal {
             return container;
         }
     }
-
 
 
     /**

@@ -10,26 +10,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <style>
-        :root, [data-bs-theme=light], [data-bs-theme=dark] {
-            --bs-border-radius: 0;
-            --bs-border-radius-sm: 0;
-            --bs-border-radius-lg: 0;
-            --bs-border-radius-xl: 0;
-            --bs-border-radius-xxl: 0;
-        }
-        a {
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 768px) {
-            .lead {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link href="/css/demo-styles.css" rel="stylesheet">
 </head>
 <body data-bs-theme="light">
 
@@ -449,7 +430,7 @@ const menu = new SlideReveal('#panel', {
     position: 'right',
     filter: true,
     pushBody: true,
-    filterStyle: 'blur(2px) grayscale(100%)'
+    filterStyle: 'blur(3px) grayscale(100%)'
 });
 </code>
                     </pre>
@@ -457,7 +438,7 @@ const menu = new SlideReveal('#panel', {
                                 data-target="#panel"
                                 data-position="right"
                                 data-filter="true"
-                                data-filter-style="blur(2px) grayscale(100%)"
+                                data-filter-style="blur(3px) grayscale(100%)"
                                 data-push-body="true"
                         >
                             Toggle panel
@@ -523,7 +504,7 @@ const menu = new SlideReveal('#panel', {
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
-<script src="/js/slidereveal.js"></script>
+<script src="/js/slidereveal.min.js"></script>
 <script>
 
     hljs.highlightAll();

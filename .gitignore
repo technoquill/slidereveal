@@ -24,8 +24,8 @@ coverage/
 .env.*
 
 # VSCode
-.vscode/
-.idea/
+.vscode
+.idea
 
 # Test output
 /jest/
