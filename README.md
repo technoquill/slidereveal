@@ -1,8 +1,14 @@
-# SlideReveal.js
+# SlideReveal.js - (JavaScript)
+
+###  A lightweight, flexible, and dependency-free JavaScript library for creating responsive side panels (drawers/slide menus).
 
 > **Disclaimer:**\
-> This library is not affiliated with the original [jQuery SlideReveal](https://github.com/nnattawat/slidereveal) (author: Natthawat Pongsri, MIT license).\
-> SlideReveal.js is a modern, dependency-free, vanilla JS implementation with extended functionality for contemporary frontend projects.
+> This library is **not affiliated** with the original [jQuery SlideReveal](https://github.com/nnattawat/slidereveal) (author: Natthawat Pongsri, MIT license).\
+> SlideReveal.js is a modern, **dependency-free**, **vanilla JS** implementation with extended functionality for contemporary frontend projects.
+
+> **Note for jQuery-based projects:**\
+> If your project already relies heavily on jQuery, you may prefer to use the original [jQuery SlideReveal](https://github.com/nnattawat/slidereveal) plugin for the best compatibility and integration.\
+> This vanilla JS version is designed for dependency-free projects or for those migrating away from jQuery.
 
 > **Special thanks to the original author:**\
 > Huge thanks to [Natthawat Pongsri](https://github.com/nnattawat) for the idea and the original jQuery implementation.\
@@ -32,6 +38,10 @@ It supports overlays, push-body effects, filters, keyboard accessibility, and fu
 
 ---
 
+## Demo
+
+[Live SlideReveal Demo](https://technoquill.github.io/lib/slidereveal/)
+
 ## Installation
 
 ### 1. Via NPM (recommended)
@@ -48,7 +58,9 @@ import SlideReveal from 'slidereveal-js';
 
 ### 2. Manual Download
 
-- Download [`slidereveal.min.js`](./dist/slidereveal.min.js)
+- Download 
+  - Uncompressed [`slidereveal.js`](./src/slidereveal.js)
+  - Minified [`slidereveal.min.js`](./dist/slidereveal.min.js)
 - Add to your project and include via `<script src="slidereveal.min.js"></script>` if not using modules
 
 ---
@@ -196,6 +208,23 @@ Case 2: Selector is body
 
 ---
 
+## SlideReveal HTML markup
+
+``` html
+<html>
+    <body class='slidereveal-open'>
+        <!-- panel -->
+        <div class='slidereveal-panel'>
+             <div class='slidereveal-panel-content'> ... </div>
+        </div>
+        <!-- body (selector) content -->
+         <div class='slidereveal-body'> ... </div>
+       <!-- overlay -->
+       <div class='slidereveal-overlay'></div>
+    </body>
+</htmk>
+
+```
 
 ## Example: CSS (optional)
 
@@ -209,7 +238,7 @@ Minimal CSS (if you want to further style or animate):
 }
 
 /* Panel content styling (if needed) */
-.panel-content {
+.slidereveal-panel-content {
   box-sizing: border-box;
   /* Add your custom styles */
 }

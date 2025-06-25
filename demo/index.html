@@ -10,7 +10,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <link href="/css/demo-styles.css" rel="stylesheet">
+    <link href="./css/demo-styles.css" rel="stylesheet">
 </head>
 <body data-bs-theme="light">
 
@@ -20,7 +20,7 @@
             <header id="heading" class="sticky-top text-bg-light px-4 pb-2">
                 <div class="row">
                     <div class="col">
-                        <h1 class="h2 py-3"><a href="/" class="">SlideReveal.js</a></h1>
+                        <h1 class="h2 py-3"><a href="#" class="home">SlideReveal.js</a></h1>
                     </div>
                     <div class="col-auto">
                         <div class="pt-3 mr-4">
@@ -504,114 +504,7 @@ const menu = new SlideReveal('#panel', {
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
-<script src="/js/slidereveal.min.js"></script>
-<script>
-
-    hljs.highlightAll();
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-        const panels = {};
-
-        document.querySelectorAll('.toggle-panel').forEach(button => {
-            const target = button.dataset.target;
-            const targetId = target.startsWith('#') ? target : `#${target}`;
-            const targetKey = target.replace(/^#/, '');
-
-            if (!panels[targetKey]) {
-                panels[targetKey] = new SlideReveal(targetId, {});
-            }
-
-            button.addEventListener('click', () => {
-                if (panels[targetKey]) {
-                    panels[targetKey].destroy();
-                    delete panels[targetKey];
-                    resetPanelStyles(targetId);
-                }
-
-                let options = {};
-                Object.entries(button.dataset).forEach(([key, value]) => {
-                    if (key !== "target") {
-                        if (["true", "false"].includes(value)) value = value === "true";
-                        options[key] = value;
-                    }
-                });
-
-                panels[targetKey] = new SlideReveal(targetId, options);
-                panels[targetKey].toggle();
-
-                panels[targetKey].onClose = () => {
-                    panels[targetKey].destroy();
-                    resetPanelStyles(targetId);
-                    delete panels[targetKey];
-                }
-            });
-        });
-
-        // Panel links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (!targetId || targetId === '#') return;
-                const target = document.querySelector(targetId);
-                const header = document.getElementById('heading');
-                const headerHeight = header ? header.offsetHeight : 0;
-                if (target) {
-                    e.preventDefault();
-                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    const container = this.closest('div[id]');
-                    setTimeout(() => {
-                        panels[container.id].toggle()
-                    }, panels[container.id].options.speed)
-                }
-            });
-
-
-        });
-
-        if (window.location.hash) {
-            const targetId = window.location.hash;
-            scrollToBlock(targetId);
-        }
-
-    });
-
-    function scrollToBlock(targetId) {
-        if (!targetId || targetId === '#') return;
-        const target = document.querySelector(targetId);
-        if (target) {
-            target.scrollIntoView({behavior: 'smooth', block: 'start'});
-            //history.pushState(null, null, targetId);
-        }
-    }
-
-    function resetPanelStyles(targetId) {
-        const el = document.querySelector(targetId);
-        if (el) {
-            el.style.transform = '';
-            el.style.transition = '';
-            el.style.right = '';
-            el.style.left = '';
-            el.style.width = '';
-            el.style.height = '';
-            el.style.zIndex = '';
-            el.style.background = '';
-            el.removeAttribute('aria-hidden');
-            el.removeAttribute('aria-label');
-            el.removeAttribute('aria-modal');
-            el.removeAttribute('role');
-            el.classList.remove('slidereveal-panel');
-        }
-    }
-
-</script>
-<script>
-
-</script>
+<script src="./js/slidereveal.min.js"></script>
+<script src="./js/demo-scripts.js"></script>
 </body>
 </html>

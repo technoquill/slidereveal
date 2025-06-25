@@ -4,19 +4,19 @@
   "main": "dist/slidereveal.min.js",
   "module": "src/slidereveal.js",
   "exports": {
-    ".": "./src/SlideReveal.js"
+    ".": "./src/slidereveal.js"
   },
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-syntax-class-properties"
-  ],
   "keywords": [
-    "slider",
+    "slide",
     "drawer",
+    "menu",
     "panel",
-    "js",
+    "sidebar",
     "vanilla",
-    "menu"
+    "javascript",
+    "slidereveal",
+    "js",
+    "ui"
   ],
   "license": "MIT",
   "author": "Mykhailo Kulyk",
