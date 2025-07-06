@@ -1,5 +1,7 @@
 # SlideReveal.js - (JavaScript)
 
+[![npm](https://img.shields.io/npm/v/slidereveal-js.svg?style=flat-square)](https://www.npmjs.com/package/slidereveal-js)
+
 ###  A lightweight, flexible, and dependency-free JavaScript library for creating responsive side panels (drawers/slide menus).
 
 > **Disclaimer:**\
