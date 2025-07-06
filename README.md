@@ -4,6 +4,14 @@
 
 ###  A lightweight, flexible, and dependency-free JavaScript library for creating responsive side panels (drawers/slide menus).
 
+## Overview
+
+**SlideReveal.js** is a lightweight, flexible, and dependency-free JavaScript class for creating responsive side panels (drawers/slide menus).\
+It supports overlays, push-body effects, filters, keyboard accessibility, and full customization through callbacks and options.
+
+> Browser support: Edge 12+, Chrome 45+, Firefox 44+, Safari 10+, IE — not supported
+---
+
 > **Disclaimer:**\
 > This library is **not affiliated** with the original [jQuery SlideReveal](https://github.com/nnattawat/slidereveal) (author: Natthawat Pongsri, MIT license).\
 > SlideReveal.js is a modern, **dependency-free**, **vanilla JS** implementation with extended functionality for contemporary frontend projects.
@@ -16,14 +24,6 @@
 > Huge thanks to [Natthawat Pongsri](https://github.com/nnattawat) for the idea and the original jQuery implementation.\
 > The motivation for this rewrite was the move away from jQuery and the need for a universal, lightweight solution.
 
----
-
-## Overview
-
-**SlideReveal.js** is a lightweight, flexible, and dependency-free JavaScript class for creating responsive side panels (drawers/slide menus).\
-It supports overlays, push-body effects, filters, keyboard accessibility, and full customization through callbacks and options.
-
-> Browser support: Edge 12+, Chrome 45+, Firefox 44+, Safari 10+, IE — not supported
 ---
 
 ## Features
